@@ -1,0 +1,5 @@
+deploy/
+.travis.yml
+README.md
+LICENSE
+docker-compose.yml

@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  postgres:
+    environment:
+      - "ROOT_PASSWORD=moodle"
+      - "DATABASE=moodle"
+      - "USER=moodle"
+      - "PASSWORD=moodle"
+    image: postgres:9.3
+    ports:
+      - "XXX"
+    volumes:
+      - ./init_psql:/docker-entrypoint-initdb.d
+  moodle:
+    build: .
+    image: jbkc85/moodle
+    links:
+      - postgres:postgres
+    volumes:
+      - ./moodledata:/var/moodledata
+      - ./moodle-config.php:/var/www/moodle/config.php:ro
