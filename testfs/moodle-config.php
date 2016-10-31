@@ -15,7 +15,7 @@ $CFG->dboptions = array (
   'dbpersist' => 0,
 );
 
-$CFG->wwwroot  = 'http://moodle.localdev';
+$CFG->wwwroot  = 'http://localhost:41337';
 $CFG->dataroot  = '/var/moodledata';
 $CFG->admin     = 'admin';
 
@@ -23,6 +23,6 @@ $CFG->directorypermissions = 02775;
 
 $CFG->passwordsaltmain = 'y0uR34l!ySh0uldtU$3-th1sS&lt';
 
-require_once "/var/www/moodle/lib/setup.php";
+require_once "/var/www/html/lib/setup.php";
 // There is no php closing tag in this file,
 // it is intentional because it prevents trailing whitespace problems!
