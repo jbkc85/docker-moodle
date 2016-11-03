@@ -15,14 +15,17 @@ RUN apt-get update \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
     && docker-php-ext-install intl pdo pdo_mysql xmlrpc curl pspell \
                               ldap zip pdo_pgsql gd opcache \
-    && docker-php-ext-enable intl pdo pdo_mysql pdo_pgsql xmlrpc curl \
-                             pspell ldap zip gd opcache \
+    && docker-php-ext-enable opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists* /tmp/* /var/tmp/*
 
 # Copy in and make default content areas
-COPY php.ini /usr/local/etc/php
+COPY rootfs /
 RUN mkdir -p /var/moodledata && \
-    git clone -b MOODLE_${MOODLE_VERSION}_STABLE --depth 1 ${MOODLE_GITHUB} ${MOODLE_DESTINATION}
+    git clone -b MOODLE_${MOODLE_VERSION}_STABLE --depth 1 ${MOODLE_GITHUB} ${MOODLE_DESTINATION} && \
+    /usr/local/bin/composer self-update && \
+    git clone git://github.com/tmuras/moosh.git /usr/local/moosh-online && \
+    cd /usr/local/moosh-online && composer install && \
+    ln -s /usr/local/moosh-online/moosh.php /usr/local/bin/moosh
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
