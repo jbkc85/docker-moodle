@@ -12,7 +12,6 @@ services:
       - "5432"
   moodle:
     build: ./
-    image: jbkc85/moodle
     links:
       - postgres:postgres
     ports:

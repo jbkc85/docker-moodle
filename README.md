@@ -1,12 +1,37 @@
 # docker-moodle
 Moodle Docker Image, Documentation and Compose files to get Moodle up and running for development and production purposes.
 
-# Setup
+## Build and Run
 
-There are multiple ways to get this container up and running, and which way you choose really depends on your environment.
+```sh
+git clone https://github.com/jbkc85/docker-moodle.git
+cd docker-moodle
+docker build -t yourtag/moodle .
+```
 
-### Docker Compose
+Once you have the image available, you need to have your config.php available for mounting
 
-docker-compose is a valid choice for production deployments, however in this particular compose file I am keeping persistent data out of the equation as unless you know more about volumes and persistent data in Docker, its easier to keep these resources outside of your container environment (please note, that if you have someone who does understand all the ends-and-outs of the volume/container data environment let them help you out!).
+```sh
+docker run -d -h moodle.example.com --name moodle.example.com \
+    -v moodle-config.php:/var/www/html/config.php:ro \
+    -p 443:443 -p 80:80 yourtag/moodle
+```
 
-### Kubernetes
+> Please take into consideration the resources needed to run this Container.  Moodle has a decent footprint and should not be taken for granted
+
+## Testing
+
+### Local Testing with Compose
+
+If you are interested in running this container locally to see what it acts like, simply run the test-compose.yml which will provide you with a Postgres Database and Moodle.  By default it will be listening on the localhost port 41337 to avoid any issues with port collisions.
+
+```sh
+git clone https://github.com/jbkc85/docker-moodle.git
+docker-compose -f test-compose.yml up -d
+```
+
+### TravisCI
+
+UNDER CONSTRUCTION...
+
+This repository utilizes [TravisCI](https://travis-ci.org) for testing and then pushing to the Docker Hub.  To find more information about TravisCI and its utilization in this repository, please look at the [Docs Directory for Testing](docs/testing.md)

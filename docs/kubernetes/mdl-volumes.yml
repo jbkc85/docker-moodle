@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: moodlesite-moodledata
+  labels:
+    type: local
+    app: moodle
+    apptype: web
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /tmp/data/moodlesite-moodledata
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: moodlesite-postgres
+  labels:
+    type: local
+    app: postgres
+    apptype: database
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: /tmp/data/moodlesite-postgres
