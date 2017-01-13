@@ -6,7 +6,7 @@ $CFG = new stdClass();
 
 $CFG->dbtype    = 'pgsql';
 $CFG->dblibrary = 'native';
-$CFG->dbhost    = 'postgres';
+$CFG->dbhost    = 'moodle-database';
 $CFG->dbname    = 'moodle';
 $CFG->dbuser    = 'moodle';
 $CFG->dbpass    = 'moodle';
@@ -15,7 +15,7 @@ $CFG->dboptions = array (
   'dbpersist' => 0,
 );
 
-$CFG->wwwroot  = 'http://localhost:41337';
+$CFG->wwwroot  = 'http://moodle.local';
 $CFG->dataroot  = '/var/moodledata';
 $CFG->admin     = 'admin';
 

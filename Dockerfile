@@ -20,12 +20,14 @@ RUN apt-get update \
 
 # Copy in and make default content areas
 COPY rootfs /
-RUN mkdir -p /var/moodledata && \
-    git clone -b MOODLE_${MOODLE_VERSION}_STABLE --depth 1 ${MOODLE_GITHUB} ${MOODLE_DESTINATION} && \
+RUN git clone -b MOODLE_${MOODLE_VERSION}_STABLE --depth 1 ${MOODLE_GITHUB} ${MOODLE_DESTINATION} && \
     /usr/local/bin/composer self-update && \
     git clone git://github.com/tmuras/moosh.git /usr/local/moosh-online && \
     cd /usr/local/moosh-online && composer install && \
     ln -s /usr/local/moosh-online/moosh.php /usr/local/bin/moosh
+
+RUN mkdir -p /var/moodledata && \
+    ln -sf /var/moodlecfg/config.php ${MOODLE_DESTINATION}/config.php
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
