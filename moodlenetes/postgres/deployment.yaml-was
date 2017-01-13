@@ -44,11 +44,15 @@ spec:
       - image: postgres:9.5-alpine
         name: database
         env:
-        - name: POSTGRES_DATABASE
+          # $ kubectl create secret generic postgresql-pass --from-file=password.txt
+          # make sure password.txt does not have a trailing newline
+        - name: ROOT_PASSWORD
           value: moodle
-        - name: POSTGRES_USER
+        - name: DATABASE
           value: moodle
-        - name: POSTGRES_PASSWORD
+        - name: USER
+          value: moodle
+        - name: PASSWORD
           value: moodle
         ports:
         - containerPort: 5432

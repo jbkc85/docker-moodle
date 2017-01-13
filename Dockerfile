@@ -13,8 +13,8 @@ RUN apt-get update \
                           libldap2-dev \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-    && docker-php-ext-install intl pdo pdo_mysql xmlrpc curl pspell \
-                              ldap zip pdo_pgsql gd opcache \
+    && docker-php-ext-install intl pdo mysqli xmlrpc curl pspell \
+                              ldap zip pgsql gd opcache soap \
     && docker-php-ext-enable opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists* /tmp/* /var/tmp/*
 

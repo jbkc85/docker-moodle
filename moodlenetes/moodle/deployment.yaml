@@ -32,11 +32,15 @@ spec:
         ports:
         - containerPort: 80
           name: moodle
+        resources:
+          requests:
+            cpu: 300m
+            memory: 128Mi
         volumeMounts:
         - name: moodledata
           mountPath: /var/moodledata
         - name: config
-          mountPath: /var/moodleconf
+          mountPath: /var/moodlecfg
       volumes:
       - name: moodledata
         persistentVolumeClaim:

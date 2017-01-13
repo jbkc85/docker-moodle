@@ -2,14 +2,27 @@ Moodlenetes
 ===========
 
 ----
+
+----
+
+**WARNING**
+
+This documentation is purely for example.  Please take into consideration all resource restraints and deployment options (such as logging) before taking this tutorial into production.  I will be adding bits and pieces over time as I am more familiar with best practices, but also welcome any comments/suggestions as people walkthrough this tutorial!
+
+**WARNING**
+
+----
+
+----
+
 **Table of Contents**:
 
-* [Getting Started](#getting_started)
-* [Proxy Setup](traefik.md)
+1. [Getting Started](#getting_started)
+2. [Proxy Setup](traefik.md)
   * TLDR; deploy with copy/paste
-* [Postgres Setup](postgres.md)
+3. [Postgres Setup](postgres.md)
   * TLDR; deploy with copy/paste
-* [Moodle Setup](moodle.md)
+4. [Moodle Setup](moodle.md)
   * TLDR; deploy with copy/paste
 
 ----
@@ -18,6 +31,7 @@ Moodlenetes is a Kubernetes deployment of Moodle.  There is absolutely an intent
 
 > Note that the Ingress Proxy used here, [Traefik](traefik.io), is interchangable with any other method you choose.
 
+---
 
 Getting Started
 ---------------

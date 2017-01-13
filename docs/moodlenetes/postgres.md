@@ -25,6 +25,8 @@ spec:
     path: /tmp/postgresql
 ```
 
+----
+
 ### Secrets
 
 Passwords in Kubernetes isn't that difficult if you pass them in through the environment.  However, this isn't secure nor a best practice.  Therefore instead of making an 'easy tutorial', we are going to go through the creation of secrets.  For this particular setup, we use four secrets: Root Password, Database, Username and Password.  To create them, we basically upload them to the API through the 'secrets' type from plain text files.
@@ -33,10 +35,10 @@ If you wish to create your own text files, simply use the following:
 
 ```sh
 # create txt files if you wish
-$ echo -n "your_value" > postgres-rootpassword.txt
-$ echo -n "your_value" > postgres-database.txt
-$ echo -n "your_value" > postgres-user.txt
-$ echo -n "your_value" > postgres-password.txt
+$ echo -n "your_value" > moodlenetes/postgres/postgres-rootpassword.txt
+$ echo -n "your_value" > moodlenetes/postgres/postgres-database.txt
+$ echo -n "your_value" > moodlenetes/postgres/postgres-user.txt
+$ echo -n "your_value" > moodlenetes/postgres/postgres-password.txt
 ```
 
 If you wish to use the default (everything is ``moodle``), just leave the files as they are.
@@ -44,8 +46,31 @@ If you wish to use the default (everything is ``moodle``), just leave the files 
 Whichever you choose, its now time to upload these secrets.  Once again, to read more about Secrets [just visit the documentation site](https://kubernetes.io/docs/user-guide/secrets/).
 
 ```sh
-$ kubectl create secret generic postgres-credentials --from-file=postgres-rootpassword.txt --from-file=postgres-database.txt --from-file=postgres-user.txt --from-file=postgres-password.txt
+$ kubectl create secret generic postgres-credentials --from-file=moodlenetes/postgres/postgres-rootpassword.txt --from-file=moodlenetes/postgres/postgres-database.txt --from-file=moodlenetes/postgres/postgres-user.txt --from-file=moodlenetes/postgres/postgres-password.txt
 ```
+
+After the secret is created, you should be able to describe it based on the name given, in our case ``postgres-credentials``.
+
+```sh
+$ kubectl describe secret postgres-credentials
+Name:		postgres-credentials
+Namespace:	default
+Labels:		<none>
+Annotations:	<none>
+
+Type:	Opaque
+
+Data
+====
+postgres-database.txt:		6 bytes
+postgres-password.txt:		6 bytes
+postgres-rootpassword.txt:	6 bytes
+postgres-user.txt:		6 bytes
+```
+
+Now we have our secrets, and we can get onto the Deployment!
+
+----
 
 ### Deployment
 
@@ -149,7 +174,7 @@ spec:
 #### TLDR;
 
 ```sh
-$ kubectl create secret generic postgres-credentials --from-file=postgres-rootpassword.txt --from-file=postgres-database.txt --from-file=postgres-user.txt --from-file=postgres-password.txt
+$ kubectl create secret generic postgres-credentials --from-file=moodlenetes/postgres/postgres-rootpassword.txt --from-file=moodlenetes/postgres/postgres-database.txt --from-file=moodlenetes/postgres/postgres-user.txt --from-file=moodlenetes/postgres/postgres-password.txt
 $ kubectl apply -f moodlenetes/postgres/
 
 ```
