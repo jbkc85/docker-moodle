@@ -1,0 +1,13 @@
+site_name: docker-moodle and Moodlenetes
+theme: readthedocs
+repo_name: GitHub
+repo_url: https://github.com/jbkc85/docker-moodle
+pages:
+  - Home: index.md
+  - Docker: docker/README.md
+  - Moodlenetes:
+    - Overview: moodlenetes/README.md
+    - Traefik: moodlenetes/traefik.md
+    - Postgres: moodlenetes/postgres.md
+    - Moodle: moodlenetes/moodle.md
+    - TLDR: moodlenetes/tldr.md

@@ -35,3 +35,15 @@ docker-compose -f test-compose.yml up -d
 UNDER CONSTRUCTION...
 
 This repository utilizes [TravisCI](https://travis-ci.org) for testing and then pushing to the Docker Hub.  To find more information about TravisCI and its utilization in this repository, please look at the [Docs Directory for Testing](docs/testing.md)
+
+
+# Moodlenetes
+
+To see Moodlenetes and a brief tutorial on deploying Moodle to Kubernetes, you can [follow the documentationa]
+
+* [Proxy Setup](docs/moodlenetes/traefik.md)
+* [Postgres Setup](docs/moodlenetes/postgres.md)
+* [Moodle Setup](docs/moodlenetes/moodle.md)
+
+Or, just go to the copy/paste area in the [TLDR Section](docs/moodlenetes/tldr.md)
+
