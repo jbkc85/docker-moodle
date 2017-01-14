@@ -37,13 +37,8 @@ UNDER CONSTRUCTION...
 This repository utilizes [TravisCI](https://travis-ci.org) for testing and then pushing to the Docker Hub.  To find more information about TravisCI and its utilization in this repository, please look at the [Docs Directory for Testing](docs/testing.md)
 
 
-# Moodlenetes
+# M8s
 
-To see Moodlenetes and a brief tutorial on deploying Moodle to Kubernetes, you can [follow the documentationa]
+To see Moodlenetes and a brief tutorial on deploying Moodle to Kubernetes, you can [follow the documentationa](https://github.com/jbkc85/moodle-kubernetes-tutorial)
 
-* [Proxy Setup](docs/moodlenetes/traefik.md)
-* [Postgres Setup](docs/moodlenetes/postgres.md)
-* [Moodle Setup](docs/moodlenetes/moodle.md)
-
-Or, just go to the copy/paste area in the [TLDR Section](docs/moodlenetes/tldr.md)
 
