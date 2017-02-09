@@ -1,4 +1,5 @@
 # docker-moodle
+
 Moodle Docker Image, Documentation and Compose files to get Moodle up and running for development and production purposes.
 
 ## Build and Run
@@ -19,6 +20,11 @@ docker run -d -h moodle.example.com --name moodle.example.com \
 
 > Please take into consideration the resources needed to run this Container.  Moodle has a decent footprint and should not be taken for granted
 
+
+### Extending the Image
+
+UNDER CONSTRUCTION...
+
 ## Testing
 
 ### Local Testing with Compose
@@ -32,9 +38,26 @@ docker-compose -f test-compose.yml up -d
 
 ### TravisCI
 
-UNDER CONSTRUCTION...
+This repository utilizes [TravisCI](https://travis-ci.org) for testing and then pushing to the Docker Hub.
 
-This repository utilizes [TravisCI](https://travis-ci.org) for testing and then pushing to the Docker Hub.  To find more information about TravisCI and its utilization in this repository, please look at the [Docs Directory for Testing](docs/testing.md)
+```yaml
+sudo: required
+services:
+  - docker
+before_install:
+  - docker-compose -f travis-compose.yml -p travis up -d
+  - docker exec -it travis_moodle_1 /usr/local/bin/php /var/www/html/admin/cli/install_database.php --adminpass=pa55w0rd --adminemail=moodleadmin@example.com --agree-license --fullname TravisCI --shortname travis
+  - curl -XGET --header 'Host: moodle.local' localhost
+# Check site to see if it works
+# run jMeter tests
+# run PHPUnit Tests inside of container
+```
+
+**TODO**:
+
+* create jMeter Tests
+* run PHPUnit Tests from Moodle
+* BeHat tests?
 
 
 # M8s

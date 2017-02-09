@@ -7,7 +7,7 @@ services:
       - "DATABASE=moodle"
       - "USER=moodle"
       - "PASSWORD=moodle"
-    image: postgres:9.3
+    image: postgres:9.3-alpine
     ports:
       - "5432"
   moodle:
