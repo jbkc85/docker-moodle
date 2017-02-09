@@ -4,18 +4,20 @@ services:
   database:
     environment:
       - "ROOT_PASSWORD=moodle"
-      - "DATABASE=moodle"
-      - "USER=moodle"
-      - "PASSWORD=moodle"
+      - "POSTGRES_DATABASE=moodle"
+      - "POSTGRES_USER=moodle"
+      - "POSTGRES_PASSWORD=moodle"
     image: postgres:9.3-alpine
     ports:
       - "5432"
   moodle:
     build: ./
+    depends_on:
+      - database
     links:
       - database:moodle-database
     ports:
-      - "80"
+      - "80:80"
     volumes:
       - ./testfs/moodledata:/var/moodledata
       - ./testfs/moodle-config.php:/var/www/html/config.php:ro

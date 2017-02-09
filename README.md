@@ -15,10 +15,13 @@ Once you have the image available, you need to have your config.php available fo
 ```sh
 docker run -d -h moodle.example.com --name moodle.example.com \
     -v moodle-config.php:/var/www/html/config.php:ro \
-    -p 443:443 -p 80:80 yourtag/moodle
+    -p 80:80 yourtag/moodle
 ```
 
-> Please take into consideration the resources needed to run this Container.  Moodle has a decent footprint and should not be taken for granted
+### Production Considerations
+
+* Resources: Ensure that you have a good understanding of the resources required around running this container.  This will give you a better idea of how to deploy, when to scale, and what limits/requirements to set up upon deploying to your favorite orchestrator.
+* Load Balancer: I typically don't run Moodle on port 443, rather use a front end load balancer.  This is reflected in the examples you see here and in the example on the [Kubernetes Deployment Tutorial](https://github.com/jbkc85/moodle-kubernetes-tutorial).
 
 
 ### Extending the Image
