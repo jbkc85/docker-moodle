@@ -13,7 +13,7 @@ services:
   moodle:
     build: ./
     links:
-      - database
+      - database:moodle-database
     ports:
       - "80"
     volumes:
