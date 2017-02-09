@@ -15,7 +15,7 @@ services:
     links:
       - database
     ports:
-      - "41337:80"
+      - "80"
     volumes:
       - ./testfs/moodledata:/var/moodledata
       - ./testfs/moodle-config.php:/var/www/html/config.php:ro

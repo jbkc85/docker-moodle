@@ -1,0 +1,12 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: jenkins-ingress
+spec:
+  rules:
+  - host: jenkins.local
+    http:
+      paths:
+      - backend:
+          serviceName: intentional-coral-jenkin
+          servicePort: 8080
