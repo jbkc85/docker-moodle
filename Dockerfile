@@ -2,7 +2,7 @@ FROM php:7.0-apache
 MAINTAINER Jason Cameron <jbkc85@gmail.com>
 
 ENV MOODLE_VERSION=32 \
-    MOODLE_GITHUB=https://github.com/moodle/moodle.git \
+    MOODLE_GITHUB=git://git.moodle.org/moodle.git \
     MOODLE_DESTINATION=/var/www/html
 
 # Download Essential Packages
