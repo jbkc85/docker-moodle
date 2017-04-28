@@ -7,7 +7,7 @@ services:
       - "POSTGRES_DATABASE=moodle"
       - "POSTGRES_USER=moodle"
       - "POSTGRES_PASSWORD=moodle"
-    image: postgres:9.3-alpine
+    image: postgres:9.6-alpine
     ports:
       - "5432"
   moodle:
@@ -19,5 +19,5 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./testfs/moodledata:/var/moodledata
+      - ./testfs/moodledata:/moodle/data
       - ./testfs/moodle-config.php:/var/www/html/config.php:ro

@@ -13,21 +13,18 @@ RUN apt-get update \
                           libldap2-dev \
     && docker-php-ext-configure ldap --with-libdir=lib/x86_64-linux-gnu \
     && docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-    && docker-php-ext-install intl pdo mysqli xmlrpc curl pspell \
-                              ldap zip pgsql gd opcache soap \
+    && docker-php-ext-install intl pdo xmlrpc curl pspell ldap zip pgsql gd opcache soap \
     && docker-php-ext-enable opcache \
     && apt-get clean && rm -rf /var/lib/apt/lists* /tmp/* /var/tmp/*
 
 # Copy in and make default content areas
 COPY rootfs /
-RUN git clone -b MOODLE_${MOODLE_VERSION}_STABLE --depth 1 ${MOODLE_GITHUB} ${MOODLE_DESTINATION} && \
-    /usr/local/bin/composer self-update && \
-    git clone git://github.com/tmuras/moosh.git /usr/local/moosh-online && \
-    cd /usr/local/moosh-online && composer install && \
-    ln -s /usr/local/moosh-online/moosh.php /usr/local/bin/moosh
+RUN git clone -b MOODLE_${MOODLE_VERSION}_STABLE --depth 1 ${MOODLE_GITHUB} ${MOODLE_DESTINATION}
 
-RUN mkdir -p /var/moodledata && \
-    ln -sf /var/moodlecfg/config.php ${MOODLE_DESTINATION}/config.php
+RUN mkdir -p /moodle/data && \
+    chown -R www-data:www-data /moodle && \
+    chmod 2775 /moodle && \
+    ln -sf /moodle/conf/config.php ${MOODLE_DESTINATION}/config.php && \
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
