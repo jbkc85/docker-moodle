@@ -24,7 +24,7 @@ RUN git clone -b MOODLE_${MOODLE_VERSION}_STABLE --depth 1 ${MOODLE_GITHUB} ${MO
 RUN mkdir -p /moodle/data && \
     chown -R www-data:www-data /moodle && \
     chmod 2775 /moodle && \
-    ln -sf /moodle/conf/config.php ${MOODLE_DESTINATION}/config.php && \
+    ln -sf /moodle/conf/config.php ${MOODLE_DESTINATION}/config.php
 
 # Enable mod_rewrite
 RUN a2enmod rewrite
