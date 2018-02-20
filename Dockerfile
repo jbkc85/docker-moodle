@@ -1,7 +1,7 @@
 FROM php:7.0-apache
 MAINTAINER Jason Cameron <jbkc85@gmail.com>
 
-ENV MOODLE_VERSION=32 \
+ENV MOODLE_VERSION=34 \
     MOODLE_GITHUB=git://git.moodle.org/moodle.git \
     MOODLE_DESTINATION=/var/www/html
 
